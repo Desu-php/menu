@@ -1,0 +1,128 @@
+.dishes-inner {
+  padding: 0 25px;
+}
+.dishes-title {
+  padding: 13px 0;
+  color: #212529;
+  font-size: 31px;
+  margin: 0;
+  font-weight: 500;
+}
+.dishes-items {
+  padding-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -24px;
+}
+.dishes-item-img {
+  transition: all .3s;
+}
+.dishes-item {
+  margin-left: 24px;
+  margin-top: 6px;
+  flex-basis: calc(33.33333% - 24px);
+  width: 100%;
+  border-bottom: 1px solid rgb(229, 229, 229);
+  &.active {
+    .dishes-item-wrapper {
+      flex-direction: column;
+    }
+    .dishes-item-img {
+      width: 100%;
+      height: auto;
+      border-radius: 0;
+    }
+    .dishes-item-top {
+      margin-top: 30px;
+    }
+  }
+}
+.dishes-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 65px;
+  margin-bottom: 10px;
+}
+.dishes-item-top-wrapper {
+  display: flex;
+  align-items: center;
+}
+.dishes-item-title {
+  font-size: 23px;
+  color: #212529;
+  font-weight: 500;
+  line-height: 1.4;
+  padding-right: 20px;
+}
+.dishes-item-weight {
+  color: #222;
+  font-size: 15px;
+  font-weight: 700;
+}
+.dishes-item-description {
+  margin-top: 12px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.4;
+}
+.dishes-item-portion {
+  margin-top: 40px;
+}
+.dishes-item-portion-title {
+  color: #212529;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 13px;
+}
+.dishes-item-portion-input {
+  display: flex;
+  align-items: center;
+  input {
+    cursor: pointer;
+  }
+}
+.dishes-item-portion-label {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 10px;
+  width: 100%;
+  cursor: pointer;
+}
+.portion-input-title, .portion-input-price {
+  font-size: 18px;
+  font-weight: 400;
+  b {
+    font-weight: 600;
+  }
+}
+.portion-input-line {
+  margin: 0 13px;
+  flex-grow: 1;
+  border-bottom: 1px dotted rgb(228, 231, 235);
+}
+.dishes-item-bottom {
+  margin-top: 20px;
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.dishes-item-price {
+  font-size: 25px;
+}
+.dishes-item-btn {
+  font-size: 18px;
+  background-color: #58ce47;
+  padding: 15px 20px;
+  max-width: 170px;
+  width: 100%;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all .3s;
+  &:hover {
+    background-color: rgba(#58ce47, .7);
+  }
+}

@@ -1,0 +1,67 @@
+@media (max-width: 940px) {
+  .dishes-item {
+    flex-basis: calc(50% - 24px);
+  }
+}
+@media (max-width: 800px) {
+  .header-nav {
+    overflow-x: scroll;
+  }
+  .header-nav-link {
+    white-space: nowrap;
+  }
+}
+@media (max-width: 650px) {
+  .dishes-item-wrapper {
+    display: flex;
+  }
+  .dishes-item-img {
+    width: 125px;
+    height: 125px;
+    margin-right: 12px;
+    border-radius: 13px;
+  }
+  .dishes-item-top {
+    margin-top: 0;
+  }
+  .dishes-item-top-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .dishes-items {
+    margin-left: 0;
+    justify-content: center;
+  }
+  .dishes-item {
+    flex-basis: 100%;
+    max-width: 520px;
+    margin-left: 0;
+  }
+}
+@media (max-width: 440px) {
+  .dishes-item-title {
+    font-size: 18px;
+  }
+  .dishes-item-weight {
+    font-size: 13px;
+  }
+  .dishes-item-description {
+    font-size: 14px;
+  }
+  .dishes-item-img {
+    width: 90px;
+    height: 90px;
+  }
+  .dishes-item-btn {
+    font-size: 14px;
+    padding: 10px 20px;
+    max-width: 140px;
+  }
+  .dishes-item-price {
+    font-size: 21px;
+  }
+  .portion-input-title, .portion-input-price {
+    font-size: 15px;
+  }
+}

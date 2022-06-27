@@ -91,19 +91,19 @@
       <nav class="header-nav">
         <ul class="header-nav-items">
           <li class="header-nav-item">
-            <a scroll-to="'#cat-1'" class="header-nav-link active">Завтраки</a>
+            <a v-smooth-scroll href="#cat-1" class="header-nav-link active">Завтраки</a>
           </li>
           <li class="header-nav-item">
-            <a scroll-to="'#cat-2'" class="header-nav-link">Салаты</a>
+            <a v-smooth-scroll href="#cat-2" class="header-nav-link">Салаты</a>
           </li>
           <li class="header-nav-item">
-            <a scroll-to="'#cat-3'" class="header-nav-link">Первые блюда</a>
+            <a v-smooth-scroll href="#cat-3" class="header-nav-link">Первые блюда</a>
           </li>
           <li class="header-nav-item">
-            <a scroll-to="'#cat-4'" class="header-nav-link">Основные блюда</a>
+            <a v-smooth-scroll href="#cat-4" class="header-nav-link">Основные блюда</a>
           </li>
           <li class="header-nav-item">
-            <a scroll-to="'#cat-5'" class="header-nav-link">Десерты</a>
+            <a v-smooth-scroll href="#cat-5" class="header-nav-link">Десерты</a>
           </li>
         </ul>
       </nav>

@@ -3,7 +3,7 @@
 }
 .dishes-title {
   padding: 13px 0;
-  color: #212529;
+  color: $dark;
   font-size: 31px;
   margin: 0;
   font-weight: 500;
@@ -50,7 +50,7 @@
 }
 .dishes-item-title {
   font-size: 23px;
-  color: #212529;
+  color: $dark;
   font-weight: 500;
   line-height: 1.4;
   padding-right: 20px;
@@ -70,7 +70,7 @@
   margin-top: 40px;
 }
 .dishes-item-portion-title {
-  color: #212529;
+  color: $dark;
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 13px;
@@ -113,7 +113,7 @@
 }
 .dishes-item-btn {
   font-size: 18px;
-  background-color: #58ce47;
+  background-color: $green;
   padding: 15px 20px;
   max-width: 170px;
   width: 100%;
@@ -123,6 +123,6 @@
   text-transform: uppercase;
   transition: all .3s;
   &:hover {
-    background-color: rgba(#58ce47, .7);
+    background-color: rgba($green, .7);
   }
 }

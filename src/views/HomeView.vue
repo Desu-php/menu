@@ -67,10 +67,38 @@
 <script>
 import Header from "../components/partials/Header.vue";
 import DishesItem from "../components/partials/DishesItem.vue";
-import VueScrollTo from 'vue-scrollto';
 
 export default {
   components: { Header, DishesItem },
-  directives: {VueScrollTo}
+  data() {
+    return {
+      page: 1,
+      observer: undefined,
+    };
+  },
+  methods: {
+    async addObserver() {
+      await this.$nextTick();
+
+      const callback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.closest('.dishes-cat').id
+            document.querySelectorAll(".header-nav-link").forEach(link => {link.classList.remove("active")})
+            document.querySelector(`a[href$="${id}"]`).classList.add("active")
+          }
+        });
+      };
+
+      this.observer = new IntersectionObserver(callback, {threshold: 1});
+
+      document.querySelectorAll(".dishes-title").forEach((el) => {
+        this.observer.observe(el);
+      });
+    },
+  },
+  mounted() {
+    this.addObserver();
+  }
 };
 </script>

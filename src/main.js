@@ -9,6 +9,8 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
-app.use(VueSmoothScroll)
+app.use(VueSmoothScroll, {
+  offset: -94
+})
 
 app.mount('#app')

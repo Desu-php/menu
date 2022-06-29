@@ -90,26 +90,18 @@
       </div>
       <nav class="header-nav">
         <ul class="header-nav-items">
-          <li class="header-nav-item">
-            <a v-smooth-scroll href="#cat-1" class="header-nav-link active"
-              >Завтраки</a
+          <li
+            class="header-nav-item"
+            v-for="item in navItems"
+            :key="item.category"
+          >
+            <a
+              
+              :href="item.category"
+              class="header-nav-link"
+              @click="navClicked(item)"
+              >{{ item.title }}</a
             >
-          </li>
-          <li class="header-nav-item">
-            <a v-smooth-scroll href="#cat-2" class="header-nav-link">Салаты</a>
-          </li>
-          <li class="header-nav-item">
-            <a v-smooth-scroll href="#cat-3" class="header-nav-link"
-              >Первые блюда</a
-            >
-          </li>
-          <li class="header-nav-item">
-            <a v-smooth-scroll href="#cat-4" class="header-nav-link"
-              >Основные блюда</a
-            >
-          </li>
-          <li class="header-nav-item">
-            <a v-smooth-scroll href="#cat-5" class="header-nav-link">Десерты</a>
           </li>
         </ul>
       </nav>
@@ -122,16 +114,42 @@ export default {
   data() {
     return {
       isSearchOpened: false,
+      navItems: [
+        {
+          title: "Завтраки",
+          category: "#cat-1",
+        },
+        {
+          title: "Салаты",
+          category: "#cat-2",
+        },
+        {
+          title: "Первые блюда",
+          category: "#cat-3",
+        },
+        {
+          title: "Основные блюда",
+          category: "#cat-4",
+        },
+        {
+          title: "Десерты",
+          category: "#cat-5",
+        },
+      ],
     };
   },
-  mounted() {
-    let links = document.querySelectorAll(".header-nav-link");
-    links.forEach((link) => {
-      link.addEventListener("click", (e) => {
-        links.forEach((link) => link.classList.remove("active"));
-        e.target.classList.add("active");
-      });
-    });
+  methods: {
+    navClicked(item) {
+      let links = document.querySelectorAll(".header-nav-link");
+      links.forEach((link) => link.classList.remove("active"));
+      document
+        .querySelector(`a[href="${item.category}"]`)
+        .classList.add("active");
+        document.querySelector(item.category).scrollIntoView({
+          behavior: 'smooth',
+          block: '-100px'
+        });
+    },
   },
 };
 </script>

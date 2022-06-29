@@ -6,7 +6,7 @@
       alt="logo"
     />
   </div>
-  <Header />
+  <Header/>
   <main>
     <section class="dishes">
       <div class="container">
@@ -83,22 +83,41 @@ export default {
       const callback = (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const id = entry.target.closest('.dishes-cat').id
-            document.querySelectorAll(".header-nav-link").forEach(link => {link.classList.remove("active")})
-            document.querySelector(`a[href$="${id}"]`).classList.add("active")
+            const container = entry.target.closest(".dishes-cat");
+            document.querySelectorAll(".header-nav-link").forEach((link) => {
+              link.classList.remove("active");
+            });
+            document.querySelector(`a[href$="${container.id}"]`).classList.add("active");
           }
         });
       };
 
-      this.observer = new IntersectionObserver(callback, {threshold: 1});
+      this.observer = new IntersectionObserver(callback, () => {
+        let margin = "20px"
 
-      document.querySelectorAll(".dishes-title").forEach((el) => {
-        this.observer.observe(el);
+        if (window.matchMedia("(max-width: 650px)").matches) {
+          margin = "100px"
+        }
+
+        return {
+          threshold: 1,
+          rootMargin: margin
+        }
       });
+
+      if (window.matchMedia("(max-width: 650px)").matches) {
+        document.querySelectorAll(".dishes-item").forEach((el) => {
+          this.observer.observe(el);
+        });
+      } else {
+        document.querySelectorAll(".dishes-item-top").forEach((el) => {
+          this.observer.observe(el);
+        });
+      }
     },
   },
   mounted() {
     this.addObserver();
-  }
+  },
 };
 </script>

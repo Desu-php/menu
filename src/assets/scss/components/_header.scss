@@ -10,6 +10,7 @@
   align-items: center;
   padding: 9px 12px;
   background-color: #000;
+  min-height: 50px;
 
   svg {
     width: 25px;
@@ -45,7 +46,7 @@
 .header-top-search-input {
   max-width: 340px;
   width: 100%;
-  padding: 6px 9px;
+  padding: 2px 9px;
 }
 
 .header-top-search-close svg{
@@ -83,12 +84,7 @@
   height: 100%;
   color: #65676b;
   font-size: 20px;
-  transition: all .3s;
   position: relative;
-
-  &:hover {
-    color: #000;
-  }
 
   &::before {
     content: "";

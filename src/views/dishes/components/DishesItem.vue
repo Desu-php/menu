@@ -2,7 +2,7 @@
   <div :class="['dishes-item', {'active': opened}]">
     <div class="dishes-item-wrapper">
       <img
-        src="../../assets/images/dishes-item.jpg"
+        src="../../../assets/images/dishes-item.jpg"
         alt="img"
         class="dishes-item-img"
         @click="openItem"

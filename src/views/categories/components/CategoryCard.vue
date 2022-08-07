@@ -1,44 +1,77 @@
 <template>
   <div class="category-item">
-    <a style="background-image:url('https://oddmenu.com:3000/image/217460674308904.jpg') ">
-
-    </a>
+    <RouterLink
+        :to="{name: 'Dishes', params: {...$route.params, category_id: category.id}}"
+        :style="`background-image:url('${category.image}')`"
+    >
+      <h2>{{ category.name }}</h2>
+    </RouterLink>
   </div>
 </template>
 
 <script setup>
+import {RouterLink} from "vue-router";
 
+const props = defineProps({
+  category: {
+    type: Object,
+    required: true
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-.category-item{
+.category-item {
   position: relative;
-  width: 100%;
   height: 140px;
 
   a {
-    .category-item__link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 16px;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    border-radius: 26px;
+    text-shadow: 0 2px 3px rgb(0 0 0 / 46%);
+    box-shadow: var(--shadow-1);
+    background-size: cover;
+    background-position: 50%;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    &:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: 100%;
-      color: #fff;
       border-radius: 26px;
-      text-shadow: 0 2px 3px rgb(0 0 0 / 46%);
-      box-shadow: var(--shadow-1);
-      background-size: cover;
-      background-position: 50%;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
+      background: #252525;
+      opacity: .3;
     }
 
-    &:focus{
+    &:focus {
       outline: none;
+    }
+
+    h2 {
+      text-transform: uppercase;
+      font-weight: 400;
+      margin: 32px 0 18px;
+
+      position: relative;
+      font-size: 24px;
+      margin-top: 20px;
+
+      @media (min-width: 420px) {
+        font-size: 28px;
+      }
     }
   }
 }

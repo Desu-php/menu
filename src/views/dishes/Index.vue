@@ -2,52 +2,12 @@
   <section class="dishes">
     <div class="container">
       <div class="dishes-inner">
-        <div class="dishes-cat" id="cat-1">
-          <h3 class="dishes-title">Завтраки</h3>
-          <div class="dishes-items">
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-          </div>
-        </div>
-        <div class="dishes-cat" id="cat-2">
-          <h3 class="dishes-title">Салаты</h3>
-          <div class="dishes-items">
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-          </div>
-        </div>
-        <div class="dishes-cat" id="cat-3">
-          <h3 class="dishes-title">Первые блюда</h3>
-          <div class="dishes-items">
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-          </div>
-        </div>
-        <div class="dishes-cat" id="cat-4">
-          <h3 class="dishes-title">Основные блюда</h3>
-          <div class="dishes-items">
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-          </div>
-        </div>
-        <div class="dishes-cat" id="cat-5">
-          <h3 class="dishes-title">Десерты</h3>
-          <div class="dishes-items">
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-            <DishesItem/>
-          </div>
+        <div class="dishes-items">
+          <DishesItem
+              v-for="dish in store.dishes"
+              :key="dish.id"
+              :dish="dish"
+          />
         </div>
       </div>
     </div>
@@ -57,6 +17,21 @@
 <script setup>
 
 import DishesItem from "./components/DishesItem.vue";
+import {useRoute} from "vue-router";
+import {onMounted} from "vue";
+import {useDishesStore} from "../../stores/dishes";
 
+const route = useRoute()
+const store = useDishesStore()
+
+onMounted(() => {
+  const params = {
+    menu_slug: route.params.menu,
+    category_id: route.params.category_id,
+  }
+
+  store.get(params)
+
+})
 
 </script>

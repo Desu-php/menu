@@ -6,12 +6,14 @@
         :key="portion.id"
         :portion="portion"
         :name="name"
+        v-bind="$attrs"
     />
   </div>
 </template>
 
 <script setup>
 import Portion from "./Portion.vue";
+import {ref} from "vue";
 
 const props = defineProps({
   portions: {
@@ -21,8 +23,9 @@ const props = defineProps({
   name: {
     type: String,
     required: true
-  }
+  },
 })
+
 </script>
 
 <style scoped>

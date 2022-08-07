@@ -24,6 +24,7 @@
     <Portions
         :portions="dish.portions"
         :name="dish.id"
+        v-model="portion"
     />
     <div class="dishes-item-bottom">
       <div class="dishes-item-price"></div>
@@ -43,6 +44,8 @@ const props = defineProps({
   }
 })
 const opened = ref(false)
+
+const portion = ref(props.dish.portions[0].id)
 
 const openItem = () => {
   if (window.matchMedia("(max-width: 650px)").matches) {

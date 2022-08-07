@@ -1,6 +1,6 @@
 <template>
   <div class="dishes-item-portion-input">
-    <input type="radio" v-bind="$attrs" :id="id"/>
+    <input type="radio" @change="$emit('update:modelValue', portion.id)" :checked="modelValue === portion.id" :id="id"/>
     <label class="dishes-item-portion-label" :for="id">
       <span class="portion-input-title">{{ portion.name }} <small v-if="portion.value">{{ showValue(portion) }}</small></span>
       <span class="portion-input-line"></span>
@@ -18,6 +18,10 @@ const props = defineProps({
     type: Object,
     required: true
   },
+  modelValue:{
+    type: [Number, String],
+    required: true
+  }
 })
 
 const showValue = ({name, value, unit}) => {

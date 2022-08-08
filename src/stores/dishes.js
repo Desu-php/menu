@@ -7,7 +7,7 @@ export const useDishesStore = defineStore({
         dishes: []
     }),
     getters: {
-        doubleCount: (state) => state.counter * 2
+
     },
     actions: {
         get(params) {

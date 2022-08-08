@@ -12,12 +12,12 @@
         <div class="dishes-item-top">
           <div class="dishes-item-top-wrapper">
             <h4 class="dishes-item-title">
-              {{dish.name}}
+              {{ dish.name }}
             </h4>
           </div>
         </div>
         <p class="dishes-item-description">
-          {{dish.description}}
+          {{ dish.description }}
         </p>
       </div>
     </div>
@@ -28,14 +28,15 @@
     />
     <div class="dishes-item-bottom">
       <div class="dishes-item-price"></div>
-      <button class="dishes-item-btn">Заказать</button>
+      <button @click="addToCart" class="dishes-item-btn">Заказать</button>
     </div>
   </div>
 </template>
 
 <script setup>
-import {ref} from "vue"
+import {computed, ref} from "vue"
 import Portions from "./Portions.vue";
+import {useCartStore} from "../../../stores/cart";
 
 const props = defineProps({
   dish: {
@@ -43,13 +44,23 @@ const props = defineProps({
     required: true
   }
 })
-const opened = ref(false)
 
+const useCart = useCartStore()
+
+const opened = ref(false)
 const portion = ref(props.dish.portions[0].id)
+
+const activePortion = computed(() => {
+  return props.dish.portions.find(pr => pr.id === portion.value)
+})
 
 const openItem = () => {
   if (window.matchMedia("(max-width: 650px)").matches) {
     opened.value = !opened.value
   }
+}
+
+const addToCart = (dish) => {
+  useCart.add(dish, activePortion.value)
 }
 </script>

@@ -21,7 +21,7 @@ const props = defineProps({
     default: []
   },
   name: {
-    type: String,
+    type: [String, Number],
     required: true
   },
 })

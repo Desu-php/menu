@@ -28,15 +28,25 @@
     />
     <div class="dishes-item-bottom">
       <div class="dishes-item-price"></div>
-      <button @click="addToCart" class="dishes-item-btn">Заказать</button>
+      <button
+          v-if="!selectedProduct"
+          @click="addToCart(dish)"
+          class="dishes-item-btn">
+        Выбрать
+      </button>
+      <NumberInput
+          v-else
+          v-model="selectedProduct.count"
+      />
     </div>
   </div>
 </template>
 
 <script setup>
-import {computed, ref} from "vue"
+import {computed, onMounted, ref, watch} from "vue"
 import Portions from "./Portions.vue";
 import {useCartStore} from "../../../stores/cart";
+import NumberInput from "../../../components/form/NumberInput.vue";
 
 const props = defineProps({
   dish: {
@@ -45,14 +55,21 @@ const props = defineProps({
   }
 })
 
-const useCart = useCartStore()
+const cartStore = useCartStore()
 
 const opened = ref(false)
-const portion = ref(props.dish.portions[0].id)
+const portion = ref(props.dish?.portions[0]?.id)
 
 const activePortion = computed(() => {
   return props.dish.portions.find(pr => pr.id === portion.value)
 })
+
+const selectedProduct = computed(() => {
+  const {product} = cartStore.search(props.dish, activePortion.value)
+
+  return product
+})
+
 
 const openItem = () => {
   if (window.matchMedia("(max-width: 650px)").matches) {
@@ -61,6 +78,12 @@ const openItem = () => {
 }
 
 const addToCart = (dish) => {
-  useCart.add(dish, activePortion.value)
+  cartStore.add(dish, activePortion.value)
 }
+
+watch(selectedProduct, newVal => {
+  if (newVal && newVal.count === 0){
+    cartStore.removeById(newVal.product_id)
+  }
+}, {deep: true})
 </script>

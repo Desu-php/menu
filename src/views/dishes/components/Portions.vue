@@ -1,6 +1,6 @@
 <template>
   <div v-if="portions.length" class="dishes-item-portion">
-    <div class="dishes-item-portion-title">Порция</div>
+    <div class="dishes-item-portion-title">{{t('Portions')}}</div>
     <Portion
         v-for="portion in portions"
         :key="portion.id"
@@ -13,7 +13,8 @@
 
 <script setup>
 import Portion from "./Portion.vue";
-import {ref} from "vue";
+import {useI18n} from "vue-i18n";
+
 
 const props = defineProps({
   portions: {
@@ -25,6 +26,8 @@ const props = defineProps({
     required: true
   },
 })
+
+const {t} = useI18n({})
 
 </script>
 

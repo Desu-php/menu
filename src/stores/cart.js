@@ -5,7 +5,7 @@ import {clone} from "../utils/object";
 export const useCartStore = defineStore({
     id: 'cart',
     state: () => ({
-        products: []
+        products: localStorage.products ? JSON.parse(localStorage.products) : []
     }),
     getters: {
         totalQuantity: state => {
@@ -54,6 +54,9 @@ export const useCartStore = defineStore({
         },
         generateId(dish, portion) {
             return parseInt(`${dish.id}${portion.id}`)
+        },
+        setLocalStorage() {
+            localStorage.products = JSON.stringify(this.products)
         }
     }
 })

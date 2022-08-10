@@ -1,6 +1,11 @@
 <script setup>
+import Loading from 'vue3-loading-overlay';
+import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import { RouterLink, RouterView } from 'vue-router'
 import Header from "./components/partials/header/Header.vue";
+import {useLoadingStore} from "./stores/loading";
+
+const loading = useLoadingStore()
 </script>
 
 <template>
@@ -13,6 +18,13 @@ import Header from "./components/partials/header/Header.vue";
   </div>
   <Header />
   <main>
+    <loading
+        :active="loading.loading"
+        :is-full-page="true"
+        :z-index="1"
+        :opacity="0"
+        background-color="transparent"
+    />
     <RouterView />
   </main>
 </template>

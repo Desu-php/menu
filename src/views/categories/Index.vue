@@ -10,21 +10,31 @@
 
 <script setup>
 import CategoryCard from "./components/CategoryCard.vue";
-import {onMounted} from "vue";
+import {onMounted, watch} from "vue";
 import {useRoute} from "vue-router"
 import {useCategoryStore} from "../../stores/categories";
+import {useLanguageStore} from "../../stores/language";
 
 const route = useRoute()
 
 const store = useCategoryStore()
+const langStore = useLanguageStore()
 
 onMounted(() => {
+  getCategories()
+})
+
+watch(() => langStore.language, newVal => {
+  getCategories()
+})
+
+const getCategories = () => {
   const params = {
     institution_slug: route.params.institution,
     menu_slug: route.params.menu
   }
   store.get(params)
-})
+}
 </script>
 
 <style lang="scss" scoped>

@@ -17,8 +17,8 @@ const props = defineProps({
 
 <style scoped lang="scss">
 .counter {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 1px;
+  padding-bottom: 1px;
   max-width: 10rem;
 }
 
@@ -30,6 +30,7 @@ const props = defineProps({
 }
 
 .btn {
+  touch-action: manipulation;
   display: inline-block;
   font-weight: 400;
   color: #212529;
@@ -42,7 +43,6 @@ const props = defineProps({
   user-select: none;
   background-color: transparent;
   border: 1px solid transparent;
-  padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
   border-radius: 0.25rem;

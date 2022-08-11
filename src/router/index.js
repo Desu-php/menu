@@ -9,6 +9,11 @@ const router = createRouter({
       component: () =>  import('@/views/categories/Index.vue')
     },
     {
+      path: '/:institution/:menu/cart',
+      name: 'Cart',
+      component: () =>  import('@/views/cart/Index.vue')
+    },
+    {
       path: '/:institution/:menu/:category_id',
       name: 'Dishes',
       component: () =>  import('@/views/dishes/Index.vue')

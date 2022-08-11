@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-20 mb-30 search-results">
+  <div v-if="store.searching" class="mt-20 mb-30 search-results">
     <template v-if="!store.loading">
       <div v-if="store.searchDishes.length" class="container dishes-inner">
         <h2 class="search-title">РЕЗУЛЬТАТ ПОИСКА:</h2>

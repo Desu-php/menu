@@ -43,7 +43,10 @@
             />
           </li>
           <li class="header-top-item cart">
-            <button class="header-top-item-btn">
+            <button
+                class="header-top-item-btn"
+                @click="$router.push({name: 'Cart', params: {institution: $route.params.institution, menu: $route.params.menu}})"
+            >
               <svg
                   class="navbar-nav-svg"
                   xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +84,7 @@
               class="header-top-search-input"
               placeholder="Поиск"
               @keyup="onSearch"
-              v-model="search"
+              v-model.trim="search"
           />
         </div>
       </div>
@@ -99,13 +102,19 @@ import {useRoute, useRouter} from "vue-router";
 import Select from "../../form/Select.vue";
 import {useLanguageStore} from "../../../stores/language";
 import {useI18n} from "vue-i18n";
+import {useMenuStore} from "../../../stores/menu";
+import {useLoading} from 'vue3-loading-overlay';
 
 const cartStore = useCartStore()
 const dishStore = useDishesStore()
 const langStore = useLanguageStore()
+const menuStore = useMenuStore()
 
 const route = useRoute()
 const router = useRouter()
+
+
+const loader = useLoading()
 
 const search = ref('')
 const {locale} = useI18n({})
@@ -121,11 +130,13 @@ watch(() => langStore.language, newVal => {
 
 onMounted(async () => {
   await router.isReady();
-
-  langStore.getLanguages({
+  const params = {
     menu_slug: route.params.menu,
     institution_slug: route.params.institution
-  })
+  }
+
+  menuStore.get(params)
+  langStore.getLanguages(params)
 })
 
 const onClose = () => {
@@ -136,17 +147,30 @@ const time = ref(null)
 const {run, loading} = useAsync(params => dishStore.search(params), [])
 
 const onSearch = () => {
-  if (!search.value.length) return
+  if (search.value.length === 0) {
+    dishStore.searchDishes = []
+    return false;
+  }
 
   if (time.value) {
     clearTimeout(time.value)
+    loader.hide()
   }
 
   time.value = setTimeout(() => {
+    loader.show({
+      canCancel: true,
+      backgroundColor: 'transparent',
+      opacity: 1,
+      zIndex: 1,
+      blur: "0"
+    })
     run({
-      menu_slug:route.params.menu,
-      institution_slug:route.params.institution,
+      menu_slug: route.params.menu,
+      institution_slug: route.params.institution,
       search: search.value
+    }).finally(() => {
+      loader.hide()
     })
   }, 250)
 }

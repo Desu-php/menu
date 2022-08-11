@@ -1,6 +1,6 @@
 <template>
-  <SearchResults v-if="store.searching"/>
-  <Dishes v-else :dishes="store.dishes"/>
+  <SearchResults />
+  <Dishes v-if="!store.searching" :dishes="store.dishes"/>
 </template>
 
 <script setup>

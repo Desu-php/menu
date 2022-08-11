@@ -27,7 +27,7 @@
     <div class="dishes-item-bottom">
       <div class="dishes-item-price"></div>
       <button
-          v-if="!selectedProduct"
+          v-if="!selectedProduct || selectedProduct.count === 0"
           @click="addToCart(dish)"
           class="dishes-item-btn">
         {{t('Choose')}}
@@ -86,6 +86,7 @@ watch(selectedProduct, newVal => {
   if (newVal && newVal.count === 0) {
     cartStore.removeById(newVal.product_id)
   }
+
 }, {deep: true})
 </script>
 

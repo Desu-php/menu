@@ -1,6 +1,6 @@
 <template>
   <div v-if="portions.length" class="dishes-item-portion">
-    <div class="dishes-item-portion-title">{{t('Portions')}}</div>
+    <div v-if="portions.length > 1" class="dishes-item-portion-title">{{t('Portions')}}</div>
     <Portion
         v-for="portion in portions"
         :key="portion.id"

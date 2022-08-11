@@ -8,6 +8,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(request => {
         if (request.loading) {
+            console.log('loader', loader)
             loader.show({
                 canCancel: true,
                 backgroundColor: 'transparent',
@@ -22,6 +23,7 @@ axiosInstance.interceptors.request.use(request => {
         return request
     },
     (err) => {
+        loader.hide()
         Promise.reject(err)
     })
 

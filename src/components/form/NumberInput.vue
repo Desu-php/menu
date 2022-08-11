@@ -1,8 +1,16 @@
 <template>
-  <div class="btn-group counter">
-    <button @click="$emit('update:modelValue', modelValue - 1)" type="button" class="btn btn-light btn-plus">&#8722;</button>
-    <span class="value">{{modelValue}}</span>
-    <button @click="$emit('update:modelValue', modelValue + 1)" type="button" class="btn btn-light btn-minus">&#43;</button>
+  <div class="btn-group counter" :class="{small}">
+    <button
+        :disabled="modelValue === 0"
+        type="button"
+        class="btn btn-light btn-plus"
+        @click="$emit('update:modelValue', modelValue - 1)"
+    >
+      &#8722;
+    </button>
+    <span class="value">{{ modelValue }}</span>
+    <button @click="$emit('update:modelValue', modelValue + 1)" type="button" class="btn btn-light btn-minus">&#43;
+    </button>
   </div>
 </template>
 
@@ -11,6 +19,10 @@ const props = defineProps({
   modelValue: {
     type: Number,
     required: true
+  },
+  small: {
+    type: Boolean,
+    default: false
   }
 })
 </script>
@@ -66,7 +78,7 @@ const props = defineProps({
       box-shadow: 0 0 0 0.2rem rgb(216 217 219 / 50%);
     }
 
-    &:active{
+    &:active {
       color: #212529;
       background-color: #dae0e5;
       border-color: #d3d9df;
@@ -96,12 +108,23 @@ const props = defineProps({
   border-bottom-right-radius: 0;
 }
 
-.value{
+.value {
   width: 50px;
   font-size: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 1px solid #f8f9fa;
+}
+
+.small {
+  .btn {
+    font-size: 15px !important;
+    padding: 0 10px;
+  }
+
+  .value{
+    font-size: 14px !important;
+  }
 }
 </style>

@@ -1,0 +1,13 @@
+.modal{
+  &-content{
+    padding: 25px;
+    position: relative;
+  }
+
+  &-btn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+}
+

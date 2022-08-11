@@ -15,6 +15,15 @@ export const useCartStore = defineStore({
             })
 
             return sum
+        },
+        totalSum: state => {
+            let sum = 0
+
+            state.products.forEach(product => {
+                sum += (product.portion.price * product.count)
+            })
+
+            return sum
         }
     },
     actions: {
@@ -32,13 +41,14 @@ export const useCartStore = defineStore({
             const {id, product} = this.search(dish, portion)
 
             if (product && product.count === 1) {
-               this.removeById(id)
+                this.removeById(id)
             } else {
                 product.count--
             }
         },
-        removeById(product_id){
+        removeById(product_id) {
             this.products = this.products.filter(product => product.product_id !== product_id)
+            this.setLocalStorage()
         },
         search(dish, portion) {
             const id = this.generateId(dish, portion)

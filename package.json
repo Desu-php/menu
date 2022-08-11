@@ -9,8 +9,10 @@
   "dependencies": {
     "axios": "^0.27.2",
     "bootstrap-grid-only-css": "^4.1.3",
+    "gitart-vue-dialog": "^2.4.0",
     "normalize.css": "^8.0.1",
     "pinia": "^2.0.14",
+    "qrcode-vue3": "^1.4.17",
     "uuid": "^8.3.2",
     "v-lazy-image": "^2.1.1",
     "vue": "^3.2.37",

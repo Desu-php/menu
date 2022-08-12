@@ -103,7 +103,6 @@ import Select from "../../form/Select.vue";
 import {useLanguageStore} from "../../../stores/language";
 import {useI18n} from "vue-i18n";
 import {useMenuStore} from "../../../stores/menu";
-import {useLoading} from 'vue3-loading-overlay';
 
 const cartStore = useCartStore()
 const dishStore = useDishesStore()
@@ -112,9 +111,6 @@ const menuStore = useMenuStore()
 
 const route = useRoute()
 const router = useRouter()
-
-
-const loader = useLoading()
 
 const search = ref('')
 const {locale} = useI18n({})
@@ -154,23 +150,13 @@ const onSearch = () => {
 
   if (time.value) {
     clearTimeout(time.value)
-    loader.hide()
   }
 
   time.value = setTimeout(() => {
-    loader.show({
-      canCancel: true,
-      backgroundColor: 'transparent',
-      opacity: 1,
-      zIndex: 1,
-      blur: "0"
-    })
     run({
       menu_slug: route.params.menu,
       institution_slug: route.params.institution,
       search: search.value
-    }).finally(() => {
-      loader.hide()
     })
   }, 250)
 }

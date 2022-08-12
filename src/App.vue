@@ -1,5 +1,4 @@
 <script setup>
-import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import { RouterLink, RouterView } from 'vue-router'
 import Header from "./components/partials/header/Header.vue";
 import {useMenuStore} from "./stores/menu";

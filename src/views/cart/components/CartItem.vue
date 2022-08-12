@@ -21,7 +21,7 @@
         <span class="price">{{ parseInt(product.portion.price) * product.count }}</span>
         <span class="currency ml-2">SM</span>
       </div>
-      <div class="col-2 col-lg-1">
+      <div class="col-2 col-lg-1 text-end">
         <a href="#" @click.prevent="onRemove">
           <IconRemove/>
         </a>
@@ -135,6 +135,10 @@ const onRemove = () => {
   @media (max-width: 768px) {
     font-size: 14px;
   }
+}
+
+.text-end{
+  text-align: end;
 }
 
 </style>

@@ -28,7 +28,7 @@ export const useDishesStore = defineStore({
         },
         search(params) {
             this.loading = true
-            return this.dishesReq(params).then(res => {
+            return this.dishesReq(params, {loading:true}).then(res => {
                 this.searchDishes = res.data
             }).finally(() => {
                 this.loading = false

@@ -114,7 +114,15 @@
   align-items: center;
 }
 .dishes-item-price {
-  font-size: 25px;
+  font-size: 14px;
+  display: flex;
+  svg{
+    width: 14px;
+    margin-right: 5px;
+  }
+}
+.invise {
+  visibility: hidden;
 }
 .dishes-item-btn {
   font-size: 18px;

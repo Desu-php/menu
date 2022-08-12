@@ -17,8 +17,8 @@
     "v-lazy-image": "^2.1.1",
     "vue": "^3.2.37",
     "vue-i18n": "^9.2.2",
+    "vue-loading-overlay": "^5.0.3",
     "vue-router": "^4.0.16",
-    "vue3-loading-overlay": "0.0.0",
     "vue3-smooth-scroll": "^0.8.1"
   },
   "devDependencies": {

@@ -1,16 +1,17 @@
 <template>
   <div class="category-item">
-    <RouterLink
-        :to="{name: 'Dishes', params: {...$route.params, category_id: category.id}}"
+    <a
+        href="#"
         :style="`background-image:url('${category.image}')`"
+        @click.prevent="to"
     >
       <h2>{{ category.name }}</h2>
-    </RouterLink>
+    </a>
   </div>
 </template>
 
 <script setup>
-import {RouterLink} from "vue-router";
+import {RouterLink, useRoute, useRouter} from "vue-router";
 
 const props = defineProps({
   category: {
@@ -18,6 +19,20 @@ const props = defineProps({
     required: true
   }
 })
+
+const router = useRouter()
+const route = useRoute()
+
+const to = () => {
+  const params = {...route.params, category_id: props.category.id}
+
+  if (props.category.has_child) {
+    return router.push({name: 'Categories', params})
+  } else {
+    return router.push({name: 'Dishes', params})
+  }
+
+}
 </script>
 
 <style lang="scss" scoped>

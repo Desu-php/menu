@@ -5,7 +5,7 @@ const router = createRouter({
   scrollBehavior: () => ({ top: 0 }),
   routes: [
     {
-      path: '/:institution/:menu',
+      path: '/:institution/:menu/:category_id?',
       name: 'Categories',
       component: () =>  import('@/views/categories/Index.vue')
     },
@@ -15,7 +15,7 @@ const router = createRouter({
       component: () =>  import('@/views/cart/Index.vue')
     },
     {
-      path: '/:institution/:menu/:category_id',
+      path: '/:institution/:menu/:category_id/dishes',
       name: 'Dishes',
       component: () =>  import('@/views/dishes/Index.vue')
     },

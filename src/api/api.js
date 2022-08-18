@@ -8,6 +8,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(request => {
         if (request.loading) {
+            if (loader) loader.hide()
 
             loader = useLoading().show({
                 canCancel: true,
@@ -16,7 +17,6 @@ axiosInstance.interceptors.request.use(request => {
                 zIndex: 1,
                 blur: "0",
                 isFullPage: true,
-                container: null
             });
         }
 

@@ -2,7 +2,7 @@
   <header class="header">
     <div class="container">
       <div class="header-top">
-        <div :class="{'invisible': $route.name === 'Categories'}" class="header-top-exit">
+        <div :class="{'invisible': $route.name === 'Categories' && !$route.params.category_id}" class="header-top-exit">
           <a class="header-top-exit-link" href="#" @click.prevent="$router.back()">
             <svg
                 xmlns="http://www.w3.org/2000/svg"

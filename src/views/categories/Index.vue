@@ -32,10 +32,18 @@ watch(() => langStore.language, newVal => {
   getCategories()
 })
 
+watch(
+    () => route.params.category_id,
+    async newId => {
+      getCategories()
+    }
+)
+
 const getCategories = () => {
   const params = {
     institution_slug: route.params.institution,
-    menu_slug: route.params.menu
+    menu_slug: route.params.menu,
+    parent_id: route.params.category_id
   }
   store.get(params)
 }

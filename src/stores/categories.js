@@ -6,6 +6,7 @@ export const useCategoryStore = defineStore({
     state: () => ({
         categories: [],
         loading: false,
+        category: {}
     }),
     getters: {
         doubleCount: (state) => state.counter * 2
@@ -19,6 +20,13 @@ export const useCategoryStore = defineStore({
             }).then(res => {
                 this.categories = res.data
             })
+        },
+        show(id) {
+            this.category = {}
+            return api.get(`categories/${id}`)
+                .then(res => {
+                    this.category = res.data
+                })
         }
     }
 })

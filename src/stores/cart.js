@@ -1,11 +1,10 @@
 import {defineStore} from 'pinia'
-import api from "../api/api";
-import {clone} from "../utils/object";
+import {clone} from "@/utils/object";
 
 export const useCartStore = defineStore({
     id: 'cart',
     state: () => ({
-        products: localStorage.products ? JSON.parse(localStorage.products) : []
+        products: []
     }),
     getters: {
         totalQuantity: state => {
@@ -65,8 +64,12 @@ export const useCartStore = defineStore({
         generateId(dish, portion) {
             return parseInt(`${dish.id}${portion.id}`)
         },
-        setLocalStorage() {
-            localStorage.products = JSON.stringify(this.products)
+        setLocalStorage(key) {
+            localStorage[`${key}.products`] = JSON.stringify(this.products)
+        },
+        setProducts(key) {
+            const localKey = `${key}.products`
+            this.products = localStorage[localKey] ? JSON.parse(localStorage[localKey]) : []
         }
     }
 })

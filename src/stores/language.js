@@ -9,7 +9,6 @@ export const useLanguageStore = defineStore({
     }),
     actions: {
         getLanguages(params){
-            console.log('params', params)
             return api.get('languages', {
                 params
             }).then(res => {

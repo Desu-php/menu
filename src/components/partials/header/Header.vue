@@ -94,15 +94,15 @@
 </template>
 
 <script setup>
-import {onMounted, ref, watch} from "vue"
-import {useCartStore} from "../../../stores/cart";
-import {useAsync} from "../../../hooks/useAsync";
-import {useDishesStore} from "../../../stores/dishes";
+import {computed, onMounted, ref, watch} from "vue"
+import {useCartStore} from "@/stores/cart";
+import {useAsync} from "@/hooks/useAsync";
+import {useDishesStore} from "@/stores/dishes";
 import {useRoute, useRouter} from "vue-router";
 import Select from "../../form/Select.vue";
-import {useLanguageStore} from "../../../stores/language";
+import {useLanguageStore} from "@/stores/language";
 import {useI18n} from "vue-i18n";
-import {useMenuStore} from "../../../stores/menu";
+import {useMenuStore} from "@/stores/menu";
 
 const cartStore = useCartStore()
 const dishStore = useDishesStore()
@@ -115,8 +115,14 @@ const router = useRouter()
 const search = ref('')
 const {locale} = useI18n({})
 
+const cartKey = computed(() => {
+  return `${route.params.institution}.${route.params.menu}`
+})
+
 watch(() => cartStore.totalQuantity, () => {
-  cartStore.setLocalStorage()
+  if (cartKey.value){
+    cartStore.setLocalStorage(cartKey.value)
+  }
 })
 
 watch(() => langStore.language, newVal => {
@@ -131,6 +137,7 @@ onMounted(async () => {
     institution_slug: route.params.institution
   }
 
+  cartStore.setProducts(cartKey.value)
   menuStore.get(params)
   langStore.getLanguages(params)
 })

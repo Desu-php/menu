@@ -25,7 +25,6 @@ axiosInstance.interceptors.request.use(request => {
         return request
     },
     (err) => {
-        console.log('request', loader)
         if (loader) {
             loader.hide()
         }
@@ -34,7 +33,6 @@ axiosInstance.interceptors.request.use(request => {
     })
 
 axiosInstance.interceptors.response.use(res => {
-        console.log('respons', loader)
         if (loader.hide) {
             loader.hide()
         }
@@ -44,7 +42,6 @@ axiosInstance.interceptors.response.use(res => {
         }
     },
     (err) => {
-        console.log('responserej', loader)
         if (loader) {
             loader.hide()
         }

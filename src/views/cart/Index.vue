@@ -9,7 +9,7 @@
           class="mb-10 p-10"
       />
       <button
-          class="dishes-item-btn mw-100 mt-10"
+          class="dishes-item-btn mw-100 mt-10 mb-10"
           @click="checkout"
       >
         {{ t('Show QR-code') }}

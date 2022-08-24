@@ -34,7 +34,7 @@
               </svg>
             </button>
           </li>
-          <li class="header-top-item">
+          <li v-if="langStore.languages.length" class="header-top-item">
             <Select
                 v-model="langStore.language"
                 :options="langStore.languages"

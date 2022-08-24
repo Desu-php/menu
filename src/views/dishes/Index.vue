@@ -22,8 +22,10 @@ const langStore = useLanguageStore()
 const categoryStore = useCategoryStore()
 
 onMounted(() => {
-  getDishes()
-  categoryStore.show(route.params.category_id)
+  if (langStore.language.length){
+    getDishes()
+    categoryStore.show(route.params.category_id)
+  }
 })
 
 watch(() => langStore.language, newVal => {

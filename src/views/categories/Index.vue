@@ -1,5 +1,5 @@
 <template>
-  <SearchResults v-if="dishStore.searchDishes.length" />
+  <SearchResults v-if="dishStore.searchDishes.length"/>
   <div class="categories container mt-16">
     <CategoryCard
         v-for="category in store.categories"
@@ -13,10 +13,10 @@
 import CategoryCard from "./components/CategoryCard.vue";
 import {onMounted, watch} from "vue";
 import {useRoute} from "vue-router"
-import {useCategoryStore} from "../../stores/categories";
-import {useLanguageStore} from "../../stores/language";
+import {useCategoryStore} from "@/stores/categories";
+import {useLanguageStore} from "@/stores/language";
 import SearchResults from "../dishes/components/SearchResults.vue";
-import {useDishesStore} from "../../stores/dishes";
+import {useDishesStore} from "@/stores/dishes";
 
 const route = useRoute()
 
@@ -25,7 +25,9 @@ const langStore = useLanguageStore()
 const dishStore = useDishesStore()
 
 onMounted(() => {
-  getCategories()
+  if (langStore.language.length) {
+    getCategories()
+  }
 })
 
 watch(() => langStore.language, newVal => {

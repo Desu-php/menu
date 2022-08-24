@@ -12,7 +12,7 @@
           <span class="dish-title mr-5">{{ product.name }}</span>
           <span class="badge badge-blue mr-5" v-if="product.portion.name">{{ product.portion.name }}</span>
           <span class="badge badge-light unit mr-5"
-                v-if="product.portion.value">{{ product.portion.value }} {{ product.portion.unit.name }}</span>
+                v-if="product.portion.value">{{ product.portion.value }} <template v-if="product.portion.unit">{{ product.portion.unit.name }}</template></span>
           <br/>
           <NumberInput v-model="product.count" :small="true"/>
         </div>
@@ -35,7 +35,8 @@
 
 import IconRemove from "../../../components/icons/IconRemove.vue";
 import NumberInput from "../../../components/form/NumberInput.vue";
-import {useCartStore} from "../../../stores/cart";
+import {useCartStore} from "@/stores/cart";
+import {useRoute} from "vue-router";
 
 const props = defineProps({
   product: {
@@ -44,11 +45,12 @@ const props = defineProps({
   }
 })
 
+const route = useRoute()
+
 const store = useCartStore()
 
-
 const onRemove = () => {
-  store.removeById(props.product.product_id)
+  store.removeById(props.product.product_id, `${route.params.institution}.${route.params.menu}`)
 }
 
 </script>

@@ -45,9 +45,9 @@ export const useCartStore = defineStore({
                 product.count--
             }
         },
-        removeById(product_id) {
+        removeById(product_id, key) {
             this.products = this.products.filter(product => product.product_id !== product_id)
-            this.setLocalStorage()
+            this.setLocalStorage(key)
         },
         search(dish, portion) {
             const id = this.generateId(dish, portion)

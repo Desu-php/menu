@@ -29,7 +29,7 @@ axiosInstance.interceptors.request.use(request => {
     })
 
 axiosInstance.interceptors.response.use(res => {
-        if (loader.hide) {
+        if (loader){
             loader.hide()
         }
 

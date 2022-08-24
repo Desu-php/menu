@@ -45,17 +45,17 @@
 <script setup>
 
 import CartItem from "./components/CartItem.vue";
-import {useCartStore} from "../../stores/cart";
+import {useCartStore} from "@/stores/cart";
 import SearchResults from "../dishes/components/SearchResults.vue";
-import {useDishesStore} from "../../stores/dishes";
+import {useDishesStore} from "@/stores/dishes";
 import {useI18n} from "vue-i18n";
 import {onMounted, ref, watch} from "vue";
 import IconRemove from "../../components/icons/IconRemove.vue";
 import VueQr3 from "qrcode-vue3"
-import {useOrderStore} from "../../stores/order";
-import {useMenuStore} from "../../stores/menu";
+import {useOrderStore} from "@/stores/order";
+import {useMenuStore} from "@/stores/menu";
 import {useRoute, useRouter} from "vue-router";
-import {useLanguageStore} from "../../stores/language";
+import {useLanguageStore} from "@/stores/language";
 
 const route = useRoute()
 const router = useRouter()
@@ -75,6 +75,7 @@ const ready = ref(false)
 onMounted(async () => {
   await getDishes()
   ready.value = true
+  console.log('products', store.products)
 })
 
 watch(() => langStore.language, newVal => {

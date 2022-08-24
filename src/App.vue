@@ -15,7 +15,7 @@ const menuStore = useMenuStore()
     />
   </div>
   <Header />
-  <main>
+  <main id="main">
 
     <RouterView />
   </main>

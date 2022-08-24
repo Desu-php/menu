@@ -9,14 +9,10 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(request => {
         if (request.loading) {
             if (loader) loader.hide()
-
             loader = useLoading().show({
                 canCancel: true,
                 backgroundColor: 'transparent',
-                opacity: 1,
-                zIndex: 1,
-                blur: "0",
-                isFullPage: true,
+                container: document.getElementById('main')
             });
         }
 
@@ -36,6 +32,7 @@ axiosInstance.interceptors.response.use(res => {
         if (loader.hide) {
             loader.hide()
         }
+
         const successCode = '0,200,20000,201,204'
         if (successCode.includes(res.status)) {
             return res.data

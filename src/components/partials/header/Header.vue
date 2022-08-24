@@ -137,9 +137,9 @@ onMounted(async () => {
     institution_slug: route.params.institution
   }
 
+  langStore.getLanguages(params)
   cartStore.setProducts(cartKey.value)
   menuStore.get(params)
-  langStore.getLanguages(params)
 })
 
 const onClose = () => {

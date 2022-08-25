@@ -4,7 +4,7 @@
     <label class="dishes-item-portion-label" :for="id">
       <span class="portion-input-title">{{ portion.name }} <small v-if="portion.value || portion.unit">{{ showValue(portion) }}</small></span>
       <span class="portion-input-line"></span>
-      <span class="portion-input-price">{{ parseInt(portion.price) }} <b v-if="portion.price">SM</b></span>
+      <span class="portion-input-price">{{ parseInt(portion.price) }} <b v-if="portion.price">{{t('SM')}}</b></span>
     </label>
   </div>
 </template>
@@ -12,6 +12,7 @@
 <script setup>
 import {v4 as uuidv4} from 'uuid';
 import {computed} from "vue";
+import {useI18n} from "vue-i18n";
 
 const props = defineProps({
   portion: {
@@ -23,6 +24,8 @@ const props = defineProps({
     required: true
   }
 })
+
+const {t} = useI18n({})
 
 const showValue = ({name, value, unit}) => {
   if (name && value) {

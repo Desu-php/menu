@@ -19,7 +19,7 @@
       </div>
       <div class="col-3 col-lg-2">
         <span class="price">{{ parseInt(product.portion.price) * product.count }}</span>
-        <span class="currency ml-2">SM</span>
+        <span class="currency ml-2">{{t('SM')}}</span>
       </div>
       <div class="col-2 col-lg-1 text-end">
         <a href="#" @click.prevent="onRemove">
@@ -37,6 +37,7 @@ import IconRemove from "../../../components/icons/IconRemove.vue";
 import NumberInput from "../../../components/form/NumberInput.vue";
 import {useCartStore} from "@/stores/cart";
 import {useRoute} from "vue-router";
+import {useI18n} from "vue-i18n";
 
 const props = defineProps({
   product: {
@@ -48,6 +49,8 @@ const props = defineProps({
 const route = useRoute()
 
 const store = useCartStore()
+
+const {t} = useI18n({})
 
 const onRemove = () => {
   store.removeById(props.product.product_id, `${route.params.institution}.${route.params.menu}`)

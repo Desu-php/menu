@@ -126,7 +126,7 @@ watch(() => cartStore.totalQuantity, () => {
 })
 
 watch(() => langStore.language, newVal => {
-  localStorage.language = newVal
+  localStorage.setItem(`${route.params.institution}.${route.params.menu}.language`, newVal)
   locale.value = newVal
 })
 
@@ -137,7 +137,7 @@ onMounted(async () => {
     institution_slug: route.params.institution
   }
 
-  langStore.getLanguages(params)
+  langStore.getLanguages(params, `${route.params.institution}.${route.params.menu}`)
   cartStore.setProducts(cartKey.value)
   menuStore.get(params)
 })

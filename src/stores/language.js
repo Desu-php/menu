@@ -8,15 +8,15 @@ export const useLanguageStore = defineStore({
         language: ''
     }),
     actions: {
-        getLanguages(params) {
+        getLanguages(params, key) {
             return api.get('languages', {
                 params
             }).then(res => {
                 this.languages = res.data
-                this.setLanguage()
+                this.setLanguage(key)
             })
         },
-        setLanguage() {
+        setLanguage(key) {
             const sng = ['az', 'am', 'by', 'ge', 'kz', 'kg', 'ru', 'tj', 'tm', 'uz']
 
             let language = window.navigator ? (window.navigator.language ||
@@ -25,13 +25,19 @@ export const useLanguageStore = defineStore({
 
             language = language.substring(0, 2).toLowerCase();
 
-            if (sng.includes(language) && this.languages.find(lg => lg.key === 'ru')) {
+            const storageKey = localStorage.getItem(`${key}.language`)
+
+            if (this.languages.find(lg => lg.key === storageKey)) {
+                language = storageKey
+            } else if (sng.includes(language) && this.languages.find(lg => lg.key === 'ru')) {
                 language = 'ru'
             } else if (this.languages.find(lg => lg.key === 'en')) {
                 language = 'en'
+            } else {
+                language = this.languages.find(lg => lg.is_main).key
             }
 
-            this.language = localStorage.language || language
+            this.language = language
         }
     }
 })

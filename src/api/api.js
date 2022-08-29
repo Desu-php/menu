@@ -1,5 +1,6 @@
 import axios from "axios";
 import {useLoading} from 'vue-loading-overlay'
+import router from "@/router";
 
 let loader = null
 const axiosInstance = axios.create({
@@ -16,7 +17,7 @@ axiosInstance.interceptors.request.use(request => {
             });
         }
 
-        request.headers['X-LANG'] = localStorage.language
+        request.headers['X-LANG'] = localStorage.getItem(`${router.currentRoute.value.params.institution}.${router.currentRoute.value.params.menu}.language`)
 
         return request
     },

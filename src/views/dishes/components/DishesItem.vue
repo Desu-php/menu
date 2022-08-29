@@ -46,7 +46,7 @@
 <script setup>
 import {computed, ref, watch} from "vue"
 import Portions from "./Portions.vue";
-import {useCartStore} from "../../../stores/cart";
+import {useCartStore} from "@/stores/cart";
 import NumberInput from "../../../components/form/NumberInput.vue";
 import VLazyImage from "v-lazy-image";
 import {useI18n} from "vue-i18n"

@@ -10,11 +10,12 @@
 <script setup>
 import {useRoute} from "vue-router";
 import {onMounted, watch} from "vue";
-import {useDishesStore} from "../../stores/dishes";
+import {useDishesStore} from "@/stores/dishes";
 import Dishes from "./components/Dishes.vue";
 import SearchResults from "./components/SearchResults.vue";
-import {useLanguageStore} from "../../stores/language";
-import {useCategoryStore} from "../../stores/categories";
+import {useLanguageStore} from "@/stores/language";
+import {useCategoryStore} from "@/stores/categories";
+import router from "@/router";
 
 const route = useRoute()
 const store = useDishesStore()
@@ -37,6 +38,7 @@ const getDishes = () => {
   const params = {
     menu_slug: route.params.menu,
     category_id: route.params.category_id,
+    institution_slug: route.params.institution
   }
 
   store.get(params)

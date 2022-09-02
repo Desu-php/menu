@@ -1,5 +1,5 @@
 <template>
-  <SearchResults v-if="dishStore.searchDishes.length"/>
+  <SearchResults v-if="dishStore.searchLength"/>
   <div class="categories container mt-16">
     <CategoryCard
         v-for="category in store.categories"

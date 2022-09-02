@@ -25,7 +25,7 @@ axiosInstance.interceptors.request.use(request => {
         if (loader) {
             loader.hide()
         }
-
+        console.log('loaderrr')
         Promise.reject(err)
     })
 
@@ -43,6 +43,7 @@ axiosInstance.interceptors.response.use(res => {
         if (loader) {
             loader.hide()
         }
+        console.log('loaderrr')
         Promise.reject(err)
     })
 

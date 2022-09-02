@@ -1,17 +1,26 @@
 <template>
   <div v-if="store.searching" class="mt-20 mb-30 search-results">
     <template v-if="!store.loading">
-      <div v-if="store.searchDishes.length" class="container dishes-inner">
+      <div v-if="store.searchLength" class="container dishes-inner">
         <h2 class="search-title">РЕЗУЛЬТАТ ПОИСКА:</h2>
       </div>
-      <Dishes :dishes="store.searchDishes"/>
+      <template
+          v-for="(dishes, category) in store.searchDishes"
+          :key="category"
+      >
+        <div  class="container dishes-inner">
+          <h2 class="search-title">{{category}}</h2>
+        </div>
+        <Dishes :dishes="dishes"/>
+      </template>
+
     </template>
   </div>
 </template>
 
 <script setup>
 import Dishes from "./Dishes.vue";
-import {useDishesStore} from "../../../stores/dishes";
+import {useDishesStore} from "@/stores/dishes";
 
 const store = useDishesStore()
 

@@ -5,11 +5,13 @@ export const useDishesStore = defineStore({
     id: 'dishes',
     state: () => ({
         dishes: [],
-        searchDishes: [],
+        searchDishes: {},
         searching: false,
         loading: false
     }),
-    getters: {},
+    getters: {
+        searchLength: state =>  Object.keys(state.searchDishes).length
+    },
     actions: {
         get(params) {
             this.dishes = []
@@ -28,10 +30,19 @@ export const useDishesStore = defineStore({
         },
         search(params) {
             this.loading = true
-            return this.dishesReq(params, {loading:true}).then(res => {
+            return api.get('dishes/search', {
+                params,
+                loading:true
+            }).then(res => {
                 this.searchDishes = res.data
             }).finally(() => {
                 this.loading = false
+            })
+        },
+        getByIds(params){
+            return api.get('dishes/ids', {
+                params,
+                loading: true
             })
         }
     }

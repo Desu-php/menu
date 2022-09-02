@@ -75,7 +75,6 @@ const ready = ref(false)
 onMounted(async () => {
   await getDishes()
   ready.value = true
-  console.log('products', store.products)
 })
 
 watch(() => langStore.language, newVal => {
@@ -89,6 +88,22 @@ const getDishes = async () => {
     })
 
     store.products = orderStore.products
+  } else {
+    if (!store.products.length) return;
+
+    try {
+      const {data}  = await dishStore.getByIds({
+        dishes: store.products.map(product => product.id)
+      })
+
+      store.products = store.products.map(product => {
+        const findProduct = data.find( item => item.id === product.id)
+        return  {...product,...findProduct, portion: findProduct.portions.find(pr => pr.id === product.portion.id)}
+      })
+    }catch (e){
+      console.log('e', e)
+    }
+
   }
 }
 

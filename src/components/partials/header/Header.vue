@@ -3,7 +3,7 @@
     <div class="container">
       <div class="header-top">
         <div :class="{'invisible': $route.name === 'Categories' && !$route.params.category_id}" class="header-top-exit">
-          <a class="header-top-exit-link" href="#" @click.prevent="$router.back()">
+          <a class="header-top-exit-link" href="#" @click.prevent="onBack">
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -120,7 +120,7 @@ const cartKey = computed(() => {
 })
 
 watch(() => cartStore.totalQuantity, () => {
-  if (cartKey.value){
+  if (cartKey.value) {
     cartStore.setLocalStorage(cartKey.value)
   }
 })
@@ -166,6 +166,20 @@ const onSearch = () => {
       search: search.value
     })
   }, 250)
+}
+
+const backUrl = (url) => {
+  url = url.split("/");
+
+  if (!url.pop().length) {
+    url.pop()
+  }
+
+  return url.join('/');
+}
+
+const onBack = () => {
+  return router.back()
 }
 </script>
 

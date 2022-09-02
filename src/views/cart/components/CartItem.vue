@@ -10,9 +10,10 @@
       <div class="col-7 col-lg-9">
         <div class="dish-info">
           <span class="dish-title mr-5">{{ product.name }}</span>
+          <span v-if="product.category" class="badge badge-success mr-5">{{product.category}}</span>
           <span class="badge badge-blue mr-5" v-if="product.portion.name">{{ product.portion.name }}</span>
           <span class="badge badge-light unit mr-5"
-                v-if="product.portion.value">{{ product.portion.value }} <template v-if="product.portion.unit">{{ product.portion.unit.name }}</template></span>
+                v-if="product.portion.value">{{ product.portion.value }} <template v-if="product.portion.unit">{{ product.portion.unit.code }}</template></span>
           <br/>
           <NumberInput v-model="product.count" :small="true"/>
         </div>
@@ -99,6 +100,11 @@ const onRemove = () => {
 .badge-blue {
   color: #fff;
   background-color: #3982e9;
+}
+
+.badge-success {
+  color: #fff;
+  background-color: #47C735;
 }
 
 .badge-light {

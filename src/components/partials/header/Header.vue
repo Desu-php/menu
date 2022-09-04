@@ -103,11 +103,13 @@ import Select from "../../form/Select.vue";
 import {useLanguageStore} from "@/stores/language";
 import {useI18n} from "vue-i18n";
 import {useMenuStore} from "@/stores/menu";
+import {useCategoryStore} from "@/stores/categories";
 
 const cartStore = useCartStore()
 const dishStore = useDishesStore()
 const langStore = useLanguageStore()
 const menuStore = useMenuStore()
+const categoryStore = useCategoryStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -179,7 +181,19 @@ const backUrl = (url) => {
 }
 
 const onBack = () => {
-  return router.back()
+  if (route.name === 'Cart') {
+    if (router.options.history.state.back) {
+      router.back()
+    } else {
+      router.push({name: 'Categories', params: route.params})
+    }
+  } else if (Object.keys(categoryStore.category).length) {
+    if (categoryStore.category?.parent_id) {
+      router.push({name: 'Categories', params: {...route.params, category_id: categoryStore.category.parent_id}})
+    } else {
+      router.push({name: 'Categories', params: {...route.params, category_id: null}})
+    }
+  }
 }
 </script>
 

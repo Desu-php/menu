@@ -23,6 +23,7 @@ const route = useRoute()
 const store = useCategoryStore()
 const langStore = useLanguageStore()
 const dishStore = useDishesStore()
+const categoryStore = useCategoryStore()
 
 onMounted(() => {
   if (langStore.language.length) {
@@ -48,6 +49,7 @@ const getCategories = () => {
     parent_id: route.params.category_id
   }
   store.get(params)
+  categoryStore.show(route.params.category_id)
 }
 </script>
 
